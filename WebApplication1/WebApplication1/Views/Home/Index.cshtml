@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<button class="btn btn-success" onclick="location.href='@Url.Action("Index", "Form")'">
+    Add Employee
+</button>
+<br />
+<br />
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>S/No.</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Age</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int index = 1;}
+        @foreach (var s in ViewBag.emplist as List<WebApplication1.Models.EMP>)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@s.E_name</td>
+                <td>@s.E_Email</td>
+                <td>@s.E_age</td>
+                <td><button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id = s.id })'"><i class="fas fa-trash"></i></button></td>
+                <td><button class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Update", new { id = s.id })'"><i class="fas fa-edit"></i></button></td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+
+<style>
+    .message {
+        display: none;
+    }
+</style>
